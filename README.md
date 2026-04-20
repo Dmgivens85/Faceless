@@ -78,6 +78,18 @@ Faceless/
    uvicorn app.main:app --reload
    ```
 
+   Or use the local launcher:
+
+   ```bash
+   ./run.sh
+   ```
+
+   Or with `make`:
+
+   ```bash
+   make run
+   ```
+
 5. Open:
 
    ```text
