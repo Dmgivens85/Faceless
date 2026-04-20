@@ -25,6 +25,8 @@ class Settings:
         if self.database_url.startswith("sqlite:///./"):
             relative_path = self.database_url.replace("sqlite:///./", "", 1)
             return BASE_DIR / relative_path
+        if self.database_url.startswith("sqlite:////"):
+            return Path(self.database_url.replace("sqlite:///", "", 1))
         return BASE_DIR / "data" / "scenesound.db"
 
 
