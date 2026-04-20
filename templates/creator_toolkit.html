@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="panel">
+    <p class="eyebrow">House Style</p>
+    <h3>Faceless Film-Sound Operating Thesis</h3>
+    <p>{{ house_thesis }}</p>
+  </section>
+
+  <section class="grid two-column">
+    <article class="panel">
+      <h3>Content Pillars</h3>
+      <ul class="list">
+        {% for pillar in pillars %}
+          <li>
+            <strong>{{ pillar.title }}</strong>
+            <span>{{ pillar.description }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </article>
+    <article class="panel">
+      <h3>Workflow</h3>
+      <ol class="ordered-list">
+        {% for step in workflow_steps %}
+          <li>{{ step }}</li>
+        {% endfor %}
+      </ol>
+    </article>
+  </section>
+
+  <section class="grid two-column">
+    <article class="panel">
+      <h3>Verdict Hook Bank</h3>
+      <ul class="list compact-list">
+        {% for hook in hook_formulas %}
+          <li><strong>{{ hook }}</strong></li>
+        {% endfor %}
+      </ul>
+    </article>
+    <article class="panel">
+      <h3>Caption Framework</h3>
+      <ol class="ordered-list">
+        {% for line in caption_framework %}
+          <li>{{ line }}</li>
+        {% endfor %}
+      </ol>
+    </article>
+  </section>
+
+  <section class="panel">
+    <h3>Starter Topics</h3>
+    <div class="grid vault-grid">
+      {% for topic in starter_topics %}
+        <article class="panel vault-item subpanel">
+          <p class="eyebrow">Scene Angle</p>
+          <h3>{{ topic.scene }}</h3>
+          <p class="muted">{{ topic.mechanism }}</p>
+          <p>{{ topic.hook }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

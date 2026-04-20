@@ -8,7 +8,7 @@ from fastapi.templating import Jinja2Templates
 
 from app.config import settings
 from app.database import Base, SessionLocal, engine
-from app.routes import breakdown_builder, content_planner, dashboard, hook_writer, ideas, scene_finder
+from app.routes import breakdown_builder, content_planner, creator_toolkit, dashboard, hook_writer, ideas, scene_finder
 from app.seed import seed_database
 
 
@@ -34,3 +34,4 @@ app.include_router(hook_writer.router, tags=["hook-writer"])
 app.include_router(breakdown_builder.router, tags=["breakdown-builder"])
 app.include_router(content_planner.router, tags=["content-planner"])
 app.include_router(ideas.router, tags=["ideas"])
+app.include_router(creator_toolkit.router, tags=["creator-toolkit"])
