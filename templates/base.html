@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page_title }} · SceneSound OS</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/app.css') }}" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand-block">
+          <p class="eyebrow">Faceless</p>
+          <h1>SceneSound OS</h1>
+          <p class="muted">
+            Internal operating system for scene research, short-form writing, and sound-first publishing.
+          </p>
+        </div>
+        <nav class="nav">
+          <a href="/" class="{% if request.url.path == '/' %}active{% endif %}">Dashboard</a>
+          <a href="/scene-finder" class="{% if request.url.path == '/scene-finder' %}active{% endif %}">Scene Finder</a>
+          <a href="/hook-writer" class="{% if request.url.path == '/hook-writer' %}active{% endif %}">Hook Writer</a>
+          <a href="/breakdown-builder" class="{% if request.url.path == '/breakdown-builder' %}active{% endif %}">Breakdown Builder</a>
+          <a href="/content-planner" class="{% if request.url.path == '/content-planner' %}active{% endif %}">Content Planner</a>
+          <a href="/ideas" class="{% if request.url.path == '/ideas' %}active{% endif %}">Idea Vault</a>
+        </nav>
+      </aside>
+      <main class="content">
+        {% include "partials/page_header.html" %}
+        {% include "partials/flash.html" %}
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </body>
+</html>

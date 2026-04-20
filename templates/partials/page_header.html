@@ -1,0 +1,14 @@
+<header class="page-header">
+  <div>
+    <p class="eyebrow">Studio Dashboard</p>
+    <h2>{{ page_title }}</h2>
+  </div>
+  <div class="status-chip">
+    <span class="status-dot"></span>
+    {% if provider_mode %}
+      {{ provider_mode.replace('-', ' ') }}
+    {% else %}
+      local-first workspace
+    {% endif %}
+  </div>
+</header>

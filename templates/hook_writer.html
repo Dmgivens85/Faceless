@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="grid app-grid">
+    <article class="panel">
+      <h3>Write Hooks</h3>
+      <form method="post" class="form-grid">
+        <label>
+          Film / Show Title
+          <input type="text" name="title" required />
+        </label>
+        <label>
+          Scene Name
+          <input type="text" name="scene_name" required />
+        </label>
+        <label>
+          Key Sound Element
+          <input type="text" name="key_sound_element" required />
+        </label>
+        <label>
+          Takeaway
+          <textarea name="takeaway" rows="3" required></textarea>
+        </label>
+        <label>
+          Tone
+          <input type="text" name="tone" placeholder="Analytical, sharp, tense" required />
+        </label>
+        <button type="submit">Generate and Save</button>
+      </form>
+    </article>
+
+    <article class="panel result-panel">
+      <h3>Output Package</h3>
+      {% if result %}
+        <div class="result-section">
+          <h4>10 Hook Options</h4>
+          <ol>{% for item in result.hook_options %}<li>{{ item }}</li>{% endfor %}</ol>
+        </div>
+        <div class="result-section">
+          <h4>5 Overlay Text Options</h4>
+          <ul>{% for item in result.overlay_options %}<li>{{ item }}</li>{% endfor %}</ul>
+        </div>
+        <div class="result-section">
+          <h4>3 Caption Starters</h4>
+          <ul>{% for item in result.caption_starters %}<li>{{ item }}</li>{% endfor %}</ul>
+        </div>
+        <div class="result-section">
+          <h4>3 CTA Endings</h4>
+          <ul>{% for item in result.cta_endings %}<li>{{ item }}</li>{% endfor %}</ul>
+        </div>
+      {% else %}
+        <p class="muted">Generate social-ready hooks, overlays, captions, and CTA endings for sound-first scene content.</p>
+      {% endif %}
+    </article>
+  </section>
+{% endblock %}

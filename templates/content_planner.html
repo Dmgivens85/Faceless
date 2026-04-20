@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="grid app-grid">
+    <article class="panel">
+      <h3>Plan a Post</h3>
+      <form method="post" class="form-grid">
+        <label>
+          Post Title
+          <input type="text" name="post_title" required />
+        </label>
+        <label>
+          Franchise / Title
+          <input type="text" name="franchise_title" required />
+        </label>
+        <label>
+          Format Type
+          <input type="text" name="format_type" placeholder="Scene Breakdown, Hook Test, Audio Analysis" required />
+        </label>
+        <label>
+          Status
+          <select name="status">
+            <option>Research</option>
+            <option>Planned</option>
+            <option>Draft</option>
+            <option>Editing</option>
+            <option>Scheduled</option>
+            <option>Published</option>
+          </select>
+        </label>
+        <label>
+          Platform
+          <select name="platform">
+            <option>TikTok</option>
+            <option>Instagram Reels</option>
+            <option>YouTube Shorts</option>
+          </select>
+        </label>
+        <label>
+          Publish Date
+          <input type="date" name="publish_date" />
+        </label>
+        <label>
+          Notes
+          <textarea name="notes" rows="4"></textarea>
+        </label>
+        <button type="submit">Save Post</button>
+      </form>
+    </article>
+
+    <article class="panel">
+      <h3>Planner View</h3>
+      <form method="get" class="filter-row">
+        <input type="text" name="q" placeholder="Search title or notes" value="{{ filters.q }}" />
+        <input type="text" name="status" placeholder="Status" value="{{ filters.status }}" />
+        <input type="text" name="platform" placeholder="Platform" value="{{ filters.platform }}" />
+        <button type="submit">Filter</button>
+      </form>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Post</th>
+              <th>Franchise</th>
+              <th>Format</th>
+              <th>Status</th>
+              <th>Platform</th>
+              <th>Publish Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for post in posts %}
+              <tr>
+                <td>{{ post.post_title }}</td>
+                <td>{{ post.franchise_title }}</td>
+                <td>{{ post.format_type }}</td>
+                <td>{{ post.status }}</td>
+                <td>{{ post.platform }}</td>
+                <td>{{ post.publish_date or "TBD" }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+{% endblock %}

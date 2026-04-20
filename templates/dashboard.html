@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="grid summary-grid">
+    <article class="panel stat">
+      <span>Scene Ideas</span>
+      <strong>{{ summary.scene_ideas }}</strong>
+    </article>
+    <article class="panel stat">
+      <span>Hook Sets</span>
+      <strong>{{ summary.hook_sets }}</strong>
+    </article>
+    <article class="panel stat">
+      <span>Breakdowns</span>
+      <strong>{{ summary.breakdowns }}</strong>
+    </article>
+    <article class="panel stat">
+      <span>Planned Posts</span>
+      <strong>{{ summary.planned_posts }}</strong>
+    </article>
+  </section>
+
+  <section class="grid two-column">
+    <article class="panel">
+      <h3>Recent Scene Ideas</h3>
+      <ul class="list">
+        {% for item in recent_ideas %}
+          <li>
+            <strong>{{ item.title }}</strong>
+            <span>{{ item.sound_focus_category }} · {{ item.mood }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </article>
+    <article class="panel">
+      <h3>Recent Hook Sets</h3>
+      <ul class="list">
+        {% for item in recent_hooks %}
+          <li>
+            <strong>{{ item.title }}</strong>
+            <span>{{ item.scene_name }} · {{ item.tone }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </article>
+    <article class="panel">
+      <h3>Recent Breakdowns</h3>
+      <ul class="list">
+        {% for item in recent_breakdowns %}
+          <li>
+            <strong>{{ item.title }}</strong>
+            <span>{{ item.scene }} · {{ item.target_length }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </article>
+    <article class="panel">
+      <h3>Planned Posts</h3>
+      <ul class="list">
+        {% for item in planned_posts %}
+          <li>
+            <strong>{{ item.post_title }}</strong>
+            <span>{{ item.platform }} · {{ item.status }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </article>
+  </section>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="grid app-grid">
+    <article class="panel">
+      <h3>Build a Breakdown</h3>
+      <form method="post" class="form-grid">
+        <label>
+          Title
+          <input type="text" name="title" required />
+        </label>
+        <label>
+          Scene
+          <input type="text" name="scene" required />
+        </label>
+        <label>
+          Hook
+          <textarea name="hook" rows="3" required></textarea>
+        </label>
+        <label>
+          Main Analysis Points
+          <textarea name="main_analysis_points" rows="4" required></textarea>
+        </label>
+        <label>
+          Target Length
+          <input type="text" name="target_length" placeholder="30 seconds, 45 seconds, 60 seconds" required />
+        </label>
+        <button type="submit">Generate and Save</button>
+      </form>
+    </article>
+
+    <article class="panel result-panel">
+      <h3>Breakdown Output</h3>
+      {% if result %}
+        {% if saved_id %}
+          <p><a class="download-link" href="/breakdown-builder/{{ saved_id }}/markdown">Download Markdown Export</a></p>
+        {% endif %}
+        <div class="result-section">
+          <h4>Short Video Script</h4>
+          <pre>{{ result.short_video_script }}</pre>
+        </div>
+        <div class="result-section">
+          <h4>Beat-by-Beat Structure</h4>
+          <ul>{% for item in result.beat_by_beat_structure %}<li>{{ item }}</li>{% endfor %}</ul>
+        </div>
+        <div class="result-section">
+          <h4>On-Screen Text Suggestions</h4>
+          <ul>{% for item in result.on_screen_text_suggestions %}<li>{{ item }}</li>{% endfor %}</ul>
+        </div>
+        <div class="result-section">
+          <h4>Sound Design / Edit Notes</h4>
+          <ul>{% for item in result.sound_design_notes %}<li>{{ item }}</li>{% endfor %}</ul>
+        </div>
+        <div class="result-section">
+          <h4>Alternate Angle</h4>
+          <p>{{ result.alternate_angle }}</p>
+        </div>
+      {% else %}
+        <p class="muted">Turn a scene hook and analysis points into a usable short-form breakdown with export support.</p>
+      {% endif %}
+    </article>
+  </section>
+{% endblock %}

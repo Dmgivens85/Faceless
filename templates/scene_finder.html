@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="grid app-grid">
+    <article class="panel">
+      <h3>Research a Scene</h3>
+      <form method="post" class="form-grid">
+        <label>
+          Film / Show Title
+          <input type="text" name="title" required />
+        </label>
+        <label>
+          Scene Description
+          <textarea name="scene_description" rows="4" required></textarea>
+        </label>
+        <label>
+          Sound Focus Category
+          <input type="text" name="sound_focus_category" placeholder="Needle drop, ambience, silence, diegetic detail" required />
+        </label>
+        <label>
+          Mood
+          <input type="text" name="mood" placeholder="Paranoid, clinical, fragile" required />
+        </label>
+        <label>
+          Notes
+          <textarea name="notes" rows="3" placeholder="Optional context, references, or angle direction"></textarea>
+        </label>
+        <button type="submit">Generate and Save</button>
+      </form>
+    </article>
+
+    <article class="panel result-panel">
+      <h3>Structured Output</h3>
+      {% if result %}
+        <div class="result-section">
+          <h4>5 Angles for Why Sound Matters</h4>
+          <ul>{% for item in result.why_sound_matters %}<li>{{ item }}</li>{% endfor %}</ul>
+        </div>
+        <div class="result-section">
+          <h4>3 Audience-Friendly Explanations</h4>
+          <ul>{% for item in result.audience_explanations %}<li>{{ item }}</li>{% endfor %}</ul>
+        </div>
+        <div class="result-section">
+          <h4>3 Technical Explanations</h4>
+          <ul>{% for item in result.technical_explanations %}<li>{{ item }}</li>{% endfor %}</ul>
+        </div>
+        <div class="result-section">
+          <h4>Reusable Tags</h4>
+          <div class="tag-row">{% for tag in result.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</div>
+        </div>
+      {% else %}
+        <p class="muted">Run a scene analysis to generate editorial angles and save them to the vault.</p>
+      {% endif %}
+    </article>
+  </section>
+{% endblock %}

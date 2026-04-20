@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="panel">
+    <h3>Search the Vault</h3>
+    <form method="get" class="filter-row">
+      <input type="text" name="q" placeholder="Search title, scene, notes, theme" value="{{ filters.q }}" />
+      <select name="category">
+        <option value="">All categories</option>
+        {% for option in categories %}
+          <option value="{{ option }}" {% if filters.category == option %}selected{% endif %}>{{ option }}</option>
+        {% endfor %}
+      </select>
+      <select name="mood">
+        <option value="">All moods</option>
+        {% for option in moods %}
+          <option value="{{ option }}" {% if filters.mood == option %}selected{% endif %}>{{ option }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit">Search</button>
+    </form>
+  </section>
+
+  <section class="grid vault-grid">
+    {% for entry in entries %}
+      <article class="panel vault-item">
+        <p class="eyebrow">{{ entry.type }}</p>
+        <h3>{{ entry.title }}</h3>
+        <p class="muted">{{ entry.context }}</p>
+        <p>{{ entry.summary }}</p>
+      </article>
+    {% else %}
+      <article class="panel">
+        <p class="muted">No matching entries found.</p>
+      </article>
+    {% endfor %}
+  </section>
+{% endblock %}
